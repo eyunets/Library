@@ -1,0 +1,15 @@
+academy\it\configuration\AuthorConverter.class
+academy\it\command\HomeController.class
+academy\it\command\LogInController.class
+academy\it\command\RootController.class
+academy\it\command\BookController.class
+academy\it\command\AuthorController.class
+academy\it\command\CatalogController.class
+academy\it\configuration\WebApplicationInitializer.class
+academy\it\command\UserController.class
+academy\it\configuration\WebConfig.class
+academy\it\configuration\SecurityConfiguration.class
+academy\it\command\AboutController.class
+academy\it\command\SignUpController.class
+academy\it\configuration\HibernateConfig.class
+academy\it\configuration\AppInitializer.class

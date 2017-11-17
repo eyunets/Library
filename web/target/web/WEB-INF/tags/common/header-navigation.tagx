@@ -1,0 +1,176 @@
+<jsp:root version="2.0" xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:s="http://www.springframework.org/tags/form"
+	xmlns:sec="http://www.springframework.org/security/tags">
+
+	<body>
+
+		<nav class="navbar navbar-toggleable-md fixed-top navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand"
+						href="${pageContext.request.contextPath}/home"> <spring:message
+							code="menu.name"></spring:message>
+					</a>
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#navbarCollapse"
+						aria-controls="navbarCollapse">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+
+				</div>
+				<div class="collapse navbar-collapse " id="navbarCollapse">
+
+					<ul class="nav navbar-nav">
+						<c:url var="path" value="/${sessionScope.pageName}"></c:url>
+						<c:choose>
+							<c:when test="${pageName eq 'catalog'}">
+								<li class="nav-item active"><a class="nav-link"
+									href="${pageContext.request.contextPath}/catalog/books/1">
+										<spring:message code="menu.catalog"></spring:message>
+								</a></li>
+							</c:when>
+							<c:otherwise>
+								<li class="nav-item"><a class="nav-link"
+									href="${pageContext.request.contextPath}/catalog/books/1">
+										<spring:message code="menu.catalog"></spring:message>
+								</a></li>
+							</c:otherwise>
+						</c:choose>
+
+
+						<c:choose>
+							<c:when test="${pageName eq 'about'}">
+								<li class="nav-item active"><a class="nav-link"
+									href="${pageContext.request.contextPath}/about"><spring:message
+											code="about.title"></spring:message></a></li>
+							</c:when>
+							<c:otherwise>
+								<li class="nav-item"><a class="nav-link"
+									href="${pageContext.request.contextPath}/about"><spring:message
+											code="about.title"></spring:message></a></li>
+							</c:otherwise>
+						</c:choose>
+
+
+
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#"
+							id="navbarDropdownMenuLink" data-toggle="dropdown"> <spring:message
+									code="menu.language"></spring:message>
+						</a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a class="dropdown-item" href="?locale=ru">Русский</a></li>
+								<li><a class="dropdown-item" href="?locale=en">English</a></li>
+							</ul></li>
+
+
+					</ul>
+					<s:form class="navbar-form navbar-left"
+						action="${pageContext.request.contextPath}/catalog/search/1"
+						method="get">
+						<input class="form-control" placeholder="Search" type="text"
+							required="" pattern=".{3,30}" name="name" />
+						<button class="btn btn-default" type="submit">
+							<spring:message code="searchcatalog.title"></spring:message>
+						</button>
+					</s:form>
+
+					<ul class="nav navbar-nav navbar-right">
+						<sec:authorize access="hasRole('USER') or hasRole('BANNED')">
+							<sec:authentication var="user" property="principal" />
+							<li class="nav-item dropdown"><a
+								class="nav-link dropdown-toggle" href="#"
+								id="navbarDropdownMenuLink" data-toggle="dropdown"> <spring:message
+										code="menu.hello"></spring:message>, ${user.getUsername()}!
+							</a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item"
+										href="${pageContext.request.contextPath}/users/edit"> <spring:message
+												code="menu.edit"></spring:message>
+									</a></li>
+									<li><a class="dropdown-item"
+										href="${pageContext.request.contextPath}/users/books"> <spring:message
+												code="mybooks.title"></spring:message>
+									</a></li>
+									<a class="divider"></a>
+									<li><a class="dropdown-item"
+										href="${pageContext.request.contextPath}/logout"> <spring:message
+												code="menu.logout"></spring:message>
+									</a></li>
+								</ul></li>
+						</sec:authorize>
+						<sec:authorize access="hasRole('ADMIN')">
+							<sec:authentication var="user" property="principal" />
+							<li class="nav-item dropdown"><a
+								class="nav-link dropdown-toggle" href="#"
+								id="navbarDropdownMenuLink" data-toggle="dropdown"> <spring:message
+										code="menu.hello"></spring:message>, ${user.getUsername()}!
+							</a>
+								<ul class="dropdown-menu"
+									aria-labelledby="navbarDropdownMenuLink">
+									<li><a class="dropdown-item"
+										href="${pageContext.request.contextPath}/books/add"> <spring:message
+												code="admin.add.book"></spring:message>
+									</a></li>
+									<li><a class="dropdown-item"
+										href="${pageContext.request.contextPath}/users/all"> <spring:message
+												code="users.title"></spring:message>
+									</a></li>
+									<li><a class="dropdown-item"
+										href="${pageContext.request.contextPath}/logout"> <spring:message
+												code="menu.logout"></spring:message>
+									</a></li>
+								</ul></li>
+						</sec:authorize>
+						<sec:authorize access="isAnonymous()">
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown"><b><spring:message
+											code="menu.signin"></spring:message></b> <span class="caret"></span></a>
+								<ul id="login-dp" class="dropdown-menu">
+									<li>
+										<div class="row">
+											<div class="col-md-12">
+												<s:form action="${pageContext.request.contextPath}/login"
+													class="form-group" method="post">
+													<div class="input-group input-sm">
+														<label class="sr-only" for="log"><spring:message
+																code="login.email" />:</label> <input type="text"
+															class="form-control" id="email" name="email"
+															placeholder="Enter Email" required="" />
+													</div>
+													<div class="input-group input-sm">
+														<label class="sr-only" for="pass">Password</label><input
+															type="password" class="form-control" id="password"
+															name="password" placeholder="Enter Password" required="" />
+													</div>
+													<div class="form-group">
+														<button type="submit" class="btn btn-primary btn-block">
+															<spring:message code="menu.signin" />
+														</button>
+													</div>
+													<div class="checkbox">
+														<label> <input type="checkbox" /> keep me
+															logged-in
+														</label>
+													</div>
+												</s:form>
+											</div>
+											<div class="bottom text-center">
+												<spring:message
+									code="new.here" /> <a
+													href="${pageContext.request.contextPath}/signup"><b><spring:message
+									code="join.us" /></b></a>
+											</div>
+										</div>
+									</li>
+								</ul></li>
+						</sec:authorize>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</body>
+
+</jsp:root>

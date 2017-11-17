@@ -1,0 +1,6 @@
+academy\it\entities\Book.class
+academy\it\entities\UserProfile.class
+academy\it\entities\Form.class
+academy\it\entities\enums\UserProfileType.class
+academy\it\entities\User.class
+academy\it\entities\Author.class

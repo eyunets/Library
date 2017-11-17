@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:u="urn:jsptagdir:/WEB-INF/tags/utils"
+	xmlns:com="urn:jsptagdir:/WEB-INF/tags/common"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:tiles="http://tiles.apache.org/tags-tiles">
+
+<jsp:directive.page pageEncoding="UTF-8" contentType="text/html; UTF-8" />
+<style>
+footer {
+	background-color: #eef1ff;
+	padding: 25px;
+}
+</style>
+<script>
+    var contextUrl = '${pageContext.request.contextPath}';
+</script>
+<head>
+<![CDATA[
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assests/css/style.css" type="text/css"></link>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assests/js/utils.js" type="text/javascript"></script>
+    ]]>
+ <title><spring:message code="${pageName}.title"/></title>
+<u:icon file="icon.png" />
+</head>
+<body>
+	<com:header-navigation />
+	<br />
+	<div class="jumbotron">
+		<div class="container text-center">
+			<tiles:insertAttribute name="body" />
+		</div>
+	</div>
+	<br />
+	<tiles:insertAttribute name="footer" />
+</body>
+</html>

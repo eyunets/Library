@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<definition name="default" template="/WEB-INF/view/layouts/default.jspx">
+		<put-attribute name="title" value="MVC" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/view/common/footer.jspx" />
+	</definition>
+
+	<definition name="home" extends="default">
+		<put-attribute name="title" value="main" />
+		<put-attribute name="body" value="/WEB-INF/view/main/main.jsp" />
+	</definition>
+
+	<definition name="about" extends="default">
+		<put-attribute name="title" value="about" />
+		<put-attribute name="body" value="/WEB-INF/view/about/main.jsp" />
+	</definition>
+	
+
+	<definition name="catalog/main" extends="default">
+		<put-attribute name="title" value="catalog" />
+		<put-attribute name="body" value="/WEB-INF/view/catalog/main.jsp" />
+	</definition>
+	
+	<definition name="signup" extends="default">
+		<put-attribute name="title" value="signup" />
+		<put-attribute name="body" value="/WEB-INF/view/signup.jsp" />
+	</definition>
+	
+	<definition name="login" extends="default">
+		<put-attribute name="title" value="login" />
+		<put-attribute name="body" value="/WEB-INF/view/login.jsp" />
+	</definition>
+	
+	<definition name="addbook" extends="default">
+		<put-attribute name="title" value="addbook" />
+		<put-attribute name="body" value="/WEB-INF/view/admin/addBook.jsp" />
+	</definition>
+	<definition name="addauthor" extends="default">
+		<put-attribute name="title" value="AuthorAdd" />
+		<put-attribute name="body" value="/WEB-INF/view/admin/addAuthor.jsp" />
+	</definition>
+	
+	<definition name="userEdit" extends="default">
+		<put-attribute name="title" value="Edit User" />
+		<put-attribute name="body" value="/WEB-INF/view/user/editUser.jsp" />
+	</definition>
+
+	<definition name="book" extends="default">
+		<put-attribute name="title" value="Edit User" />
+		<put-attribute name="body" value="/WEB-INF/view/catalog/book.jsp" />
+	</definition>
+	
+	<definition name="userBooks" extends="default">
+		<put-attribute name="title" value="Edit User" />
+		<put-attribute name="body" value="/WEB-INF/view/user/myBooks.jsp" />
+	</definition>
+	
+	<definition name="editBook" extends="default">
+		<put-attribute name="title" value="Edit User" />
+		<put-attribute name="body" value="/WEB-INF/view/admin/editBook.jsp" />
+	</definition>
+	
+	<definition name="usersAll" extends="default">
+		<put-attribute name="title" value="Edit User" />
+		<put-attribute name="body" value="/WEB-INF/view/admin/users.jsp" />
+	</definition>
+	
+	<definition name="400" extends="default">
+		<put-attribute name="title" value="Edit User" />
+		<put-attribute name="body" value="/WEB-INF/view/error/404.jsp" />
+	</definition>
+	
+	<definition name="error" extends="default">
+		<put-attribute name="title" value="Edit User" />
+		<put-attribute name="body" value="/WEB-INF/view/error/error.jsp" />
+	</definition>
+	
+	<definition name="accessDenied" extends="default">
+		<put-attribute name="title" value="Edit User" />
+		<put-attribute name="body" value="/WEB-INF/view/error/accessDenied.jsp" />
+	</definition>
+	
+	
+	
+</tiles-definitions>
+
