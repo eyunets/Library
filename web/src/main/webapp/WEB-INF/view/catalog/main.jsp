@@ -60,7 +60,7 @@
 							<a
 								href="${pageContext.request.contextPath}/books/id=${book.bookID}"
 								class="btn btn-primary"> <spring:message
-									code="catalog.reserve" />
+									code="catalog.info" />
 							</a>
 						</div>
 					</sec:authorize>

@@ -2,18 +2,16 @@ package academy.it.command;
 
 import java.util.Locale;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import academy.it.entities.Author;
+import academy.it.filters.AuthorFilter;
 import academy.it.services.IAuthorService;
 
 @Controller
@@ -25,6 +23,9 @@ public class AuthorController {
 	@Autowired
 	MessageSource messageSource;
 
+	@Autowired
+	AuthorFilter authorFilter;
+
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String signUpPage(ModelMap model) {
 		Author author = new Author();
@@ -35,13 +36,8 @@ public class AuthorController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String addBook(Locale locale, ModelMap model, @Valid Author author, BindingResult br) {
-		if (authorService.isExists(author)) {
-			FieldError loginError = new FieldError("author", "surname",
-					messageSource.getMessage("error.email", null, locale));
-			br.addError(loginError);
-		}
-
+	public String addBook(Locale locale, ModelMap model, Author author, BindingResult br) {
+		authorFilter.checkAuthor(author, br, locale);
 		if (!br.hasErrors()) {
 			if (author != null) {
 				author = authorService.save(author);

@@ -12,12 +12,12 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import academy.it.entities.User;
 import academy.it.entities.UserProfile;
+import academy.it.filters.SignUpFilter;
 import academy.it.services.IUserProfileService;
 import academy.it.services.IUserService;
 
@@ -29,6 +29,8 @@ public class SignUpController {
 	IUserProfileService userProfileService;
 	@Autowired
 	MessageSource messageSource;
+	@Autowired
+	SignUpFilter signUpFilter;
 
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String signUpPage(ModelMap model) {
@@ -47,26 +49,7 @@ public class SignUpController {
 		if (userProfile == null) {
 			userProfile = userProfileService.save(new UserProfile());
 		}
-
-		if (userService.findByLogin(user.getEmail()) != null) {
-			FieldError loginError = new FieldError("user", "email",
-					messageSource.getMessage("error.email", null, locale));
-			br.addError(loginError);
-		}
-
-		if (!user.getEmail().matches("^([a-z]+[a-z0-9]*@[a-z]+.[a-z]{2,6})$")) {
-			FieldError loginError = new FieldError("user", "email",
-					messageSource.getMessage("error.emailpattern", null, locale));
-
-			br.addError(loginError);
-		}
-
-		if (!user.getPassword().matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$")) {
-			FieldError loginError = new FieldError("user", "password",
-					messageSource.getMessage("error.passwordpattern", null, locale));
-			br.addError(loginError);
-		}
-
+		signUpFilter.checkUser(user, br, locale);
 		if (!br.hasErrors()) {
 			if (user != null) {
 				user.setUserProfile(userProfile);

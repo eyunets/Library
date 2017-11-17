@@ -4,19 +4,6 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
 
 
-
-<c:if test="${not empty errorMsg and not (errorMsg eq '')}">
-	<div class="alert alert-warning alert-dismissible fade show"
-		role="alert">
-		<button type="button" class="close" data-dismiss="alert"
-			aria-label="Close">
-			<i class="fa fa-times-circle-o"></i>
-		</button>
-		<spring:message code="data.invalid-rerty" />
-	</div>
-</c:if>
-
-
 <div class="container">
 	<s:form class="form-horizontal"
 		action="${pageContext.request.contextPath}/books/add" method="post"
@@ -33,14 +20,9 @@
 				</label>
 				<div class="controls">
 					<s:input id="name" path="name" class="form-control input-large"
-						data-pattern-error="<spring:message bundle='${i18n}' key='data.non-valid'/>"
-						data-required-error="<spring:message bundle='${i18n}' key='data.required'/>"
-						required="" pattern="^.{1,29}$" />
+						required="true" />
 					<s:errors path="name" class="help-inline" />
 				</div>
-				<small class=" form-text text-muted help-block with-errors">
-					<spring:message code='data.less-30' />
-				</small>
 			</div>
 
 			<!--author(s)-->
@@ -73,9 +55,7 @@
 				</label>
 				<div class="controls">
 					<s:input id="isbn" class="form-control input-large" path="isbn"
-						data-pattern-error="<spring:message bundle='${i18n}' key='data.non-valid'/>"
-						data-required-error="<spring:message bundle='${i18n}' key='data.required'/>"
-						required="" pattern="^[0-9\\-]{1,12}$" />
+						required="true" />
 					<s:errors path="isbn" class="help-inline" />
 				</div>
 			</div>
@@ -88,9 +68,7 @@
 				</label>
 				<div class="controls">
 					<s:input id="genre" class="form-control input-large" path="genre"
-						data-pattern-error="<spring:message bundle='${i18n}' key='data.non-valid'/>"
-						data-required-error="<spring:message bundle='${i18n}' key='data.required'/>"
-						required="" pattern="^.{1,30}$" />
+						required="true" />
 					<s:errors path="genre" class="help-inline" />
 				</div>
 			</div>
@@ -102,9 +80,7 @@
 				</label>
 				<div class="controls">
 					<s:input id="year" class="form-control input-large" path="year"
-						data-pattern-error="<spring:message bundle='${i18n}' key='data.non-valid'/>"
-						data-required-error="<spring:message bundle='${i18n}' key='data.required'/>"
-						required="" pattern="^[0-9]{4}$" />
+						required="true" />
 					<s:errors path="year" class="help-inline" />
 				</div>
 			</div>

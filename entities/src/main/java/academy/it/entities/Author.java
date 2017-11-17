@@ -11,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Pattern;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,13 +26,10 @@ public class Author {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "AUTHOR_ID")
 	private Integer authorID;
-	@Pattern(regexp = "^[A-Z]([a-z]){0,30}$")
 	@Column(name = "NAME")
 	private String name;
-	@Pattern(regexp = "^[A-Z]([a-z]){0,30}$")
 	@Column(name = "SURNAME")
 	private String surname;
-	@Pattern(regexp = "^[A-Z]([a-z]){0,30}$")
 	@Column(name = "SECOND_NAME")
 	private String secondName;
 

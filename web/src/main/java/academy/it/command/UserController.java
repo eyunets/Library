@@ -85,18 +85,6 @@ public class UserController {
 		return "redirect:/users/books";
 	}
 
-	private String getPrincipal() {
-		String userEmail = null;
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-		if (principal instanceof UserDetails) {
-			userEmail = ((UserDetails) principal).getUsername();
-		} else {
-			userEmail = principal.toString();
-		}
-		return userEmail;
-	}
-
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	public String userAll(ModelMap model) {
 		ArrayList<User> users = new ArrayList<>(userService.findAllUsers());
@@ -128,6 +116,18 @@ public class UserController {
 		user.setUserProfile(userProfile);
 		userService.update(user);
 		return "redirect:/users/all";
+	}
+
+	private String getPrincipal() {
+		String userEmail = null;
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		if (principal instanceof UserDetails) {
+			userEmail = ((UserDetails) principal).getUsername();
+		} else {
+			userEmail = principal.toString();
+		}
+		return userEmail;
 	}
 
 }

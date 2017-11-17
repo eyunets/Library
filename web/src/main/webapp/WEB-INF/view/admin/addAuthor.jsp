@@ -8,8 +8,8 @@
 	<div class="container">
 		<s:form class="form-horizontal"
 			action="${pageContext.request.contextPath}/author/add" method="post"
-			modelAttribute="author">>
-					<fieldset>
+			modelAttribute="author">
+			<fieldset>
 				<!-- Add Author Form -->
 				<!-- surname-->
 				<div class="form-group">
@@ -18,15 +18,9 @@
 					</label>
 					<div class="controls">
 						<s:input id="surname" class="form-control input-large"
-							path="surname"
-							data-pattern-error="<spring:message code='data.non-valid'/>"
-							data-required-error="<spring:message code='data.required'/>"
-							required="" pattern="^[A-Z]([a-z]){0,29}$" />
-					</div>
-					<small class=" form-text text-muted help-block with-errors">
-						<spring:message code='data.less-30' />
+							path="surname" required="true" />
 						<s:errors path="surname" class="help-inline" />
-					</small>
+					</div>
 				</div>
 
 				<!-- name-->
@@ -35,30 +29,20 @@
 							code="login.name" />:</label>
 					<div class="controls">
 						<s:input id="authorname" class="form-control input-large"
-							path="name"
-							data-pattern-error="<spring:message code='data.non-valid'/>"
-							data-required-error="<spring:message code='data.required'/>"
-							required="" pattern="^[A-Z]([a-z]){0,29}$" />
+							path="name" required="true" />
+						<s:errors path="name" class="help-inline" />
 					</div>
-					<small class=" form-text text-muted help-block with-errors">
-						<spring:message code='data.less-30' />
-					</small>
 				</div>
 
 				<!-- second name-->
 				<div class="form-group">
-					<label class="control-label" for="secondname"><spring:message
+					<label class="control-label" for="secondName"><spring:message
 							code="login.secondname" />:</label>
 					<div class="controls">
-						<s:input id="secondname" class="form-control input-large"
-							path="secondName"
-							data-pattern-error="<spring:message code='data.non-valid'/>"
-							data-required-error="<spring:message code='data.required'/>"
-							required="" pattern="^[A-Z]([a-z]){0,29}$" />
+						<s:input id="secondName" class="form-control input-large"
+							path="secondName" required="true" />
+						<s:errors path="secondName" class="help-inline" />
 					</div>
-					<small class=" form-text text-muted help-block with-errors">
-						<spring:message code='data.less-30' />
-					</small>
 				</div>
 				<!-- submit -->
 				<div class="form-group">
