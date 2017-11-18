@@ -22,13 +22,13 @@ public class UserProfile {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "USER_PROFILE_ID")
-	private long id;
+	private Integer userProfileID;
 
 	@Column(name = "TYPE", length = 15, unique = true, nullable = false)
 	private String type = UserProfileType.USER.getType();
 
 	@Override
 	public String toString() {
-		return "UserProfile [id=" + id + ",  type=" + type + "]";
+		return "UserProfile [id=" + userProfileID + ",  type=" + type + "]";
 	}
 }

@@ -13,7 +13,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,7 +25,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "BOOK")
 public class Book {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "BOOK_ID")
 	private Integer bookID;
 	@Column(name = "NAME")
@@ -41,7 +40,6 @@ public class Book {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "BOOK_AUTHOR", joinColumns = { @JoinColumn(name = "BOOK_ID") }, inverseJoinColumns = {
 			@JoinColumn(name = "AUTHOR_ID") })
-	@NotNull
 	private Set<Author> authors;
 
 	@OneToMany(mappedBy = "book")

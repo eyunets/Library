@@ -4,10 +4,10 @@ academy\it\services\impl\BookServiceImpl.class
 academy\it\services\impl\FormServiceImpl.class
 academy\it\services\ServiceException.class
 academy\it\services\IBookService.class
+academy\it\services\impl\UserProfileServiceImpl.class
 academy\it\services\impl\UserServiceImpl.class
 academy\it\services\IFormService.class
 academy\it\services\impl\AuthorServiceImpl.class
 academy\it\services\IUserProfileService.class
-academy\it\services\impl\UserProfileService.class
 academy\it\services\auth\AuthenticationService.class
 academy\it\services\IService.class

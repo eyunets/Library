@@ -1,5 +1,6 @@
-academy\it\dao\AuthorDAO.class
-academy\it\dao\UserDAO.class
 academy\it\dao\BookDAO.class
 academy\it\dao\FormDAO.class
 academy\it\dao\UserProfileDAO.class
+academy\it\dao\AuthorDAO.class
+academy\it\dao\UserDAO.class
+academy\it\configuration\HibernateConfig.class

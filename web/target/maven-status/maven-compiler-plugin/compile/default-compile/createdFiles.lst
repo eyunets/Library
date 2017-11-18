@@ -8,8 +8,10 @@ academy\it\command\CatalogController.class
 academy\it\configuration\WebApplicationInitializer.class
 academy\it\command\UserController.class
 academy\it\configuration\WebConfig.class
+academy\it\filters\SignUpFilter.class
 academy\it\configuration\SecurityConfiguration.class
+academy\it\filters\BookFilter.class
 academy\it\command\AboutController.class
 academy\it\command\SignUpController.class
-academy\it\configuration\HibernateConfig.class
 academy\it\configuration\AppInitializer.class
+academy\it\filters\AuthorFilter.class

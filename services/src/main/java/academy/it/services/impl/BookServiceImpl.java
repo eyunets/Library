@@ -71,7 +71,7 @@ public class BookServiceImpl implements IBookService {
 	}
 
 	@Override
-	public List<Book> findByIsbn(String isbn) {
+	public Book findByIsbn(String isbn) {
 		return bookDAO.findByIsbn(isbn);
 	}
 

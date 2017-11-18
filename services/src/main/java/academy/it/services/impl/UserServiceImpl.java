@@ -34,7 +34,7 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public User find(Integer id) {
-		return userDAO.findById((Integer) id).orElse(null);
+		return userDAO.findById(id).orElse(null);
 	}
 
 	@Override
@@ -65,11 +65,7 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public User findByLogin(String login) {
-		ArrayList<User> users = new ArrayList<>(userDAO.findByEmail(login));
-		if (users.isEmpty())
-			return null;
-		else
-			return users.get(0);
+		return userDAO.findByEmail(login);
 	}
 
 	@Override

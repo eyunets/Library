@@ -12,7 +12,7 @@ public interface IBookService extends IService<Book> {
 
 	Page<Book> getSearchPage(String name, Integer pageNumber);
 
-	List<Book> findByIsbn(String isbn);
+	Book findByIsbn(String isbn);
 
 	List<Book> findByGenre(String genre);
 

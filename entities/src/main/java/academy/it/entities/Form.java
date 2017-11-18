@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 public class Form {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "FORM_ID")
 	private Integer formID;
 

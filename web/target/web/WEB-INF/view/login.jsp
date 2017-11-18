@@ -9,7 +9,7 @@
 	<div id="mainWrapper">
 		<div class="login-container">
 			<div class="login-card">
-				<div class="login-form">
+				<div class="login-form col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 					<s:form action="${pageContext.request.contextPath}/login"
 						method="post" class="form-group">
 						<c:if test="${param.error != null}">
