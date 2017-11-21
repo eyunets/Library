@@ -14,6 +14,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,19 +38,15 @@ public class User {
 	@Column(name = "SURNAME")
 	private String surname;
 	@Column(name = "PASSWORD")
-	// @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$", message
-	// = "Minimum eight characters, at least one uppercase letter, one lowercase
-	// letter and one number")
 	private String password;
 	@Column(name = "EMAIL")
-	// @Pattern(regexp = "^([a-z]+[a-z0-9]*@[a-z]+.[a-z]{2,6})$", message =
-	// "Incorrect email")
+	@Pattern(regexp = "^([a-z]+[a-z0-9]*@[a-z]+.[a-z]{2,6})$")
 	private String email;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinTable(name = "USER_USER_PROFILE", joinColumns = { @JoinColumn(name = "USER_ID") }, inverseJoinColumns = {
 			@JoinColumn(name = "USER_PROFILE_ID") })
 	private UserProfile userProfile = new UserProfile();
-
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
 	private Set<Form> forms = new HashSet<>();
 
