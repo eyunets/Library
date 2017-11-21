@@ -1,9 +1,12 @@
 package academy.it.command;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,8 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.google.gson.Gson;
 
 import academy.it.entities.Form;
 import academy.it.entities.User;
@@ -78,11 +83,13 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/forms/id={formID}/delete", method = RequestMethod.POST)
-	public String deleteUserBook(@PathVariable Integer formID, ModelMap model) {
+	public void deleteUserBook(@PathVariable Integer formID, ModelMap model, HttpServletResponse response)
+			throws IOException {
 		formService.delete(formID);
 		Set<Form> forms = userService.findByLogin(getPrincipal()).getForms();
 		model.addAttribute("forms", forms);
-		return "redirect:/users/books";
+		PrintWriter writer = response.getWriter();
+		writer.print(new Gson().toJson("OK"));
 	}
 
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
@@ -94,28 +101,20 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/id={userID}/ban", method = RequestMethod.POST)
-	public String banUser(@PathVariable Integer userID, ModelMap model) {
+	public void banUser(@PathVariable Integer userID, ModelMap model, HttpServletResponse response) throws IOException {
 		User user = userService.find(userID);
-		UserProfile userProfile = userProfileService.findByType("BANNED");
-		if (userProfile == null) {
-			userProfile = userProfileService.save(new UserProfile());
+		System.out.println(user.getUserProfile().getType());
+		if (user.getUserProfile().getType().equals("USER")) {
+			UserProfile userProfile = userProfileService.findByType("BANNED");
+			user.setUserProfile(userProfile);
+			userService.update(user);
+		} else {
+			UserProfile userProfile = userProfileService.findByType("USER");
+			user.setUserProfile(userProfile);
+			userService.update(user);
 		}
-		// model.addAttribute("user", user);
-		user.setUserProfile(userProfile);
-		userService.update(user);
-		return "redirect:/users/all";
-	}
-
-	@RequestMapping(value = "/id={userID}/unban", method = RequestMethod.POST)
-	public String unbanUser(@PathVariable Integer userID, ModelMap model) {
-		User user = userService.find(userID);
-		UserProfile userProfile = userProfileService.findByType("USER");
-		if (userProfile == null) {
-			userProfile = userProfileService.save(new UserProfile());
-		}
-		user.setUserProfile(userProfile);
-		userService.update(user);
-		return "redirect:/users/all";
+		PrintWriter writer = response.getWriter();
+		writer.print(new Gson().toJson("OK"));
 	}
 
 	private String getPrincipal() {

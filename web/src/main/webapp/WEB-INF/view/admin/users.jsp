@@ -5,6 +5,10 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 
+<script>
+    var ban = '<spring:message code="user.ban"/>';
+    var unban = '<spring:message code="user.unban"/>';
+</script>
 
 <div class="container">
 	<c:forEach var="user" items="${users}">
@@ -26,25 +30,15 @@
 				<div class="panel-body">
 					<c:choose>
 						<c:when test="${user.userProfile.getType() eq 'BANNED'}">
-							<s:form 
-								action="${pageContext.request.contextPath}/users/id=${user.userID}/unban"
-								method="post">
-								<div class="controls">
-									<input type="submit" class="btn btn-success"
-										value="<spring:message code='user.unban'/>" />
-								</div>
-							</s:form>
+							<button id="${user.userID}" class="btn btn-success ban-user">
+                                <spring:message code="user.unban"/>
+                            </button>
 						</c:when>
 						<c:otherwise>
-							<s:form modelAttribute="users"
-								action="${pageContext.request.contextPath}/users/id=${user.userID}/ban"
-								method="post">
-								<div class="controls">
-									<input type="submit" class="btn btn-success"
-										value="<spring:message code='user.ban'/>" />
-								</div>
-							</s:form>
-						</c:otherwise>
+                            <button id="${user.userID}" class="btn btn-danger ban-user">
+                                <spring:message code="user.ban"/>
+                            </button>
+                        </c:otherwise>
 					</c:choose>
 				</div>
 			</div>

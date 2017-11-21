@@ -3,6 +3,9 @@ package academy.it.services.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -24,18 +27,22 @@ public class BookServiceImpl implements IBookService {
 	}
 
 	@Override
+	@Cacheable(value = "books")
 	public Page<Book> getBookPage(Integer pageNumber) {
 		PageRequest pageRequest = PageRequest.of(pageNumber - 1, PAGE_SIZE);
 		return bookDAO.findAll(pageRequest);
 	}
 
 	@Override
+	@Cacheable(value = "search")
 	public Page<Book> getSearchPage(String name, Integer pageNumber) {
 		PageRequest pageRequest = PageRequest.of(pageNumber - 1, PAGE_SIZE);
 		return bookDAO.findByName(name, pageRequest);
 	}
 
 	@Override
+	@Caching(evict = { @CacheEvict(value = "books", allEntries = true),
+			@CacheEvict(value = "search", allEntries = true) })
 	public Book save(Book book) {
 		return bookDAO.save(book);
 	}
@@ -46,6 +53,8 @@ public class BookServiceImpl implements IBookService {
 	}
 
 	@Override
+	@Caching(evict = { @CacheEvict(value = "books", allEntries = true),
+			@CacheEvict(value = "search", allEntries = true) })
 	public void update(Book book) {
 		bookDAO.save(book);
 	}
@@ -61,6 +70,8 @@ public class BookServiceImpl implements IBookService {
 	}
 
 	@Override
+	@Caching(evict = { @CacheEvict(value = "books", allEntries = true),
+			@CacheEvict(value = "search", allEntries = true) })
 	public void delete(Integer id) {
 		bookDAO.deleteById((Integer) id);
 	}

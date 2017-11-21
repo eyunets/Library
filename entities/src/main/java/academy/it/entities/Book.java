@@ -14,6 +14,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,6 +30,7 @@ public class Book {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "BOOK_ID")
+	@JsonIgnore
 	private Integer bookID;
 	@Column(name = "NAME")
 	private String name;
@@ -40,9 +44,11 @@ public class Book {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "BOOK_AUTHOR", joinColumns = { @JoinColumn(name = "BOOK_ID") }, inverseJoinColumns = {
 			@JoinColumn(name = "AUTHOR_ID") })
+	@JsonManagedReference
 	private Set<Author> authors;
 
 	@OneToMany(mappedBy = "book")
+	@JsonIgnore
 	private Set<Form> forms;
 
 	@Override

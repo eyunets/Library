@@ -3,6 +3,7 @@ package academy.it.configuration;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
 @Configuration
 @EnableWebMvc
+@EnableCaching
 @ComponentScan(basePackages = "academy.it")
 public class WebConfig implements WebMvcConfigurer {
 

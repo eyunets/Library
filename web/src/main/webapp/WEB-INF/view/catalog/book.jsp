@@ -6,6 +6,9 @@
 	uri="http://www.springframework.org/security/tags"%>
 
 
+<script>
+    var reserved = '<spring:message code="book.reserved"/>';
+</script>
 
 <div class="col-sm-12">
 	<div class="panel panel-default">
@@ -50,23 +53,15 @@
 		<sec:authorize access="hasRole('USER')">
 			<c:if test="${valid eq 'false'}">
 				<div class="panel-body">
-					<s:form
-						action="${pageContext.request.contextPath}/books/id=${book.bookID}/bookmark"
-						modelAttribute="book" method="post">
-						<button type="submit" class="btn btn-primary">
-							<spring:message code="catalog.reserve" />
-						</button>
-					</s:form>
+					<button class="btn btn-primary bookmark-book" id="${book.bookID}">
+						<spring:message code="book.reserve" />
+					</button>
 				</div>
 			</c:if>
 			<c:if test="${valid eq 'true'}">
-				<s:form
-					action="${pageContext.request.contextPath}/users/books"
-					method="get">
-					<button type="submit" class="btn btn-primary">
-						<spring:message code="book.return" />
-					</button>
-				</s:form>
+				<button class="btn disabled">
+					<spring:message code="book.reserved" />
+				</button>
 			</c:if>
 		</sec:authorize>
 	</div>

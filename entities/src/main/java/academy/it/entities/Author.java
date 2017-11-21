@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,7 +35,8 @@ public class Author {
 	@Column(name = "SECOND_NAME")
 	private String secondName;
 
-	@ManyToMany(mappedBy = "authors", fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "authors", fetch = FetchType.LAZY)
+	@JsonBackReference
 	private Set<Book> books = new HashSet<>(0);
 
 	@Override

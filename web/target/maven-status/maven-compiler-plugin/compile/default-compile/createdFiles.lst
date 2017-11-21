@@ -8,6 +8,7 @@ academy\it\command\CatalogController.class
 academy\it\configuration\WebApplicationInitializer.class
 academy\it\command\UserController.class
 academy\it\configuration\WebConfig.class
+academy\it\configuration\CacheConfig.class
 academy\it\filters\SignUpFilter.class
 academy\it\configuration\SecurityConfiguration.class
 academy\it\filters\BookFilter.class
