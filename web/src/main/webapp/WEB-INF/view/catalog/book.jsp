@@ -21,7 +21,7 @@
 		<ul class="list-group list-group-flush">
 			<li class="list-group-item"><b><spring:message
 						code="catalog.author" />: </b> <c:forEach var="author"
-					items="${authors}" varStatus="status">
+					items="${book.authors}" varStatus="status">
                     ${author.name} ${author.surname}
                     <c:if test="${not status.last}">,</c:if>
 				</c:forEach></li>

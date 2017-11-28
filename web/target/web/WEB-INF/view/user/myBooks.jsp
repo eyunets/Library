@@ -27,7 +27,7 @@
                             <c:if test="${not status.last}">,</c:if>
 						</c:forEach></li>
 					<li class="list-group-item"><b><spring:message
-								code="catalog.year" />: </b> ${book.year}</li>
+								code="catalog.year" />: </b> ${form.book.year}</li>
 				</ul>
 				<div class="panel-body">
 					<button class="btn btn-primary return-book" id="${form.formID}">

@@ -57,8 +57,7 @@
 									<s:input id="password" path="password"
 										class="form-control input-large" type="password"
 										placeholder="New password"
-										data-pattern-error="<spring:message bundle='${i18n}' key='data.non-valid'/>"
-										pattern=".{6,30}" />
+										pattern=".{8,30}" />
 									<s:errors path="password" class="help-inline" />
 								</div>
 							</div>
@@ -72,7 +71,6 @@
 								<div class="controls">
 									<s:input id="surname" placeholder="New surname"
 										class="form-control input-large" path="surname"
-										data-pattern-error="<spring:message bundle='${i18n}' key='data.non-valid'/>"
 										pattern="^[A-Z]([a-z]){0,29}$" />
 									<s:errors path="surname" class="help-inline" />
 								</div>
@@ -84,11 +82,11 @@
 
 							<!-- name-->
 							<div class="form-group">
-								<label class="control-label" for="name"></label>
+								<label class="control-label" for="name"><spring:message
+										code="login.name" />:</label>
 								<div class="controls">
 									<s:input id="name" placeholder="New name"
 										class="form-control input-large" path="name"
-										data-pattern-error="<spring:message code='data.non-valid'/>"
 										pattern="^[A-Z][a-z]{0,29}$" />
 									<s:errors path="name" class="help-inline" />
 								</div>

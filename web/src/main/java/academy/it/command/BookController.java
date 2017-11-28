@@ -76,7 +76,7 @@ public class BookController {
 	@RequestMapping(value = "/id={bookID}/edit", method = RequestMethod.POST)
 	public String editBook(Locale locale, Book book, @PathVariable Integer bookID, BindingResult br, ModelMap model) {
 
-		bookFilter.checkBook(book, br, locale);
+		bookFilter.checkBookUpdate(book, br, locale);
 
 		if (!br.hasErrors()) {
 			if (book != null) {

@@ -60,6 +60,8 @@ public class BookServiceImpl implements IBookService {
 	}
 
 	@Override
+	@Caching(evict = { @CacheEvict(value = "books", allEntries = true),
+			@CacheEvict(value = "search", allEntries = true) })
 	public void update(Book oldBook, Book newBook) {
 		oldBook.setName((newBook.getName().length() == 0) ? oldBook.getName() : newBook.getName());
 		oldBook.setIsbn((newBook.getIsbn().length() == 0) ? oldBook.getIsbn() : newBook.getIsbn());

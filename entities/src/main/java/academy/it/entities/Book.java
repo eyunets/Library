@@ -47,7 +47,7 @@ public class Book {
 	@JsonManagedReference
 	private Set<Author> authors;
 
-	@OneToMany(mappedBy = "book")
+	@OneToMany(mappedBy = "book", orphanRemoval = true)
 	@JsonIgnore
 	private Set<Form> forms;
 

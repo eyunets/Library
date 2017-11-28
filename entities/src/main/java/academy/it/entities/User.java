@@ -47,7 +47,7 @@ public class User {
 			@JoinColumn(name = "USER_PROFILE_ID") })
 	private UserProfile userProfile = new UserProfile();
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user", orphanRemoval = true)
 	private Set<Form> forms = new HashSet<>();
 
 	@Override

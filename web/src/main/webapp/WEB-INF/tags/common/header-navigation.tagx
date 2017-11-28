@@ -40,21 +40,6 @@
 						</c:choose>
 
 
-						<c:choose>
-							<c:when test="${pageName eq 'about'}">
-								<li class="nav-item active"><a class="nav-link"
-									href="${pageContext.request.contextPath}/about"><spring:message
-											code="about.title"></spring:message></a></li>
-							</c:when>
-							<c:otherwise>
-								<li class="nav-item"><a class="nav-link"
-									href="${pageContext.request.contextPath}/about"><spring:message
-											code="about.title"></spring:message></a></li>
-							</c:otherwise>
-						</c:choose>
-
-
-
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#"
 							id="navbarDropdownMenuLink" data-toggle="dropdown"> <spring:message

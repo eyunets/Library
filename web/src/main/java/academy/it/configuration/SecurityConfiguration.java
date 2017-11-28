@@ -27,18 +27,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests()
-				.antMatchers("/", "/home", "/about", "/catalog/**", "/books/id={bookID}").permitAll()
+		http.authorizeRequests().antMatchers("/", "/home", "/about", "/catalog/**").permitAll()
 				.antMatchers("/signup/**").anonymous()
-				.antMatchers("/users/all", "/users/id={userID}/ban", "/users/{userID}", "/users", "/author/add",
-						"/books/add", "/books/id={bookID}/edit", "/books/id={bookID}/delete")
+				.antMatchers("/users/all", "/users/id={userID}/ban", "/author/add", "/books/add",
+						"/books/id={bookID}/edit", "/books/id={bookID}/delete", "/users", "users/{userID}")
 				.access("hasRole('ADMIN')")
 				.antMatchers("/users/edit", "/users/books", "/books/id={bookID}/bookmark)",
-						"/users/forms/id={formID}/delete")
-				.access("hasRole('ADMIN') or hasRole('USER')").and().httpBasic().realmName("Realm")
-				.authenticationEntryPoint(getBasicAuthEntryPoint()).and().formLogin().loginPage("/login")
+						"/users/forms/id={formID}/delete", "/books/id={bookID}")
+				.access("hasRole('ADMIN') or hasRole('USER')").and().formLogin().loginPage("/login")
 				.loginProcessingUrl("/login").usernameParameter("email").passwordParameter("password")
-				.defaultSuccessUrl("/home").and().exceptionHandling().accessDeniedPage("/accessDenied");
+				.defaultSuccessUrl("/home").and().csrf().and().exceptionHandling().accessDeniedPage("/accessDenied");
 	}
 
 	@Bean
@@ -47,8 +45,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	}
 
 	@Bean
-	public MyBasicAuthenticationEntryPoint getBasicAuthEntryPoint() {
-		return new MyBasicAuthenticationEntryPoint();
+	public CustomBasicAuthenticationEntryPoint getBasicAuthEntryPoint() {
+		return new CustomBasicAuthenticationEntryPoint();
 	}
 
 	@Bean

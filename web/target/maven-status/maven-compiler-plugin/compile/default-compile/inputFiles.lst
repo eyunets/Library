@@ -10,9 +10,12 @@ C:\Users\Yauhenii\eclipse-workspace\SpringLibrary\web\src\main\java\academy\it\c
 C:\Users\Yauhenii\eclipse-workspace\SpringLibrary\web\src\main\java\academy\it\command\UserController.java
 C:\Users\Yauhenii\eclipse-workspace\SpringLibrary\web\src\main\java\academy\it\command\RootController.java
 C:\Users\Yauhenii\eclipse-workspace\SpringLibrary\web\src\main\java\academy\it\configuration\WebConfig.java
+C:\Users\Yauhenii\eclipse-workspace\SpringLibrary\web\src\main\java\academy\it\command\UserRestController.java
 C:\Users\Yauhenii\eclipse-workspace\SpringLibrary\web\src\main\java\academy\it\command\BookController.java
 C:\Users\Yauhenii\eclipse-workspace\SpringLibrary\web\src\main\java\academy\it\configuration\AppInitializer.java
 C:\Users\Yauhenii\eclipse-workspace\SpringLibrary\web\src\main\java\academy\it\configuration\SecurityConfiguration.java
+C:\Users\Yauhenii\eclipse-workspace\SpringLibrary\web\src\main\java\academy\it\configuration\CustomBasicAuthenticationEntryPoint.java
 C:\Users\Yauhenii\eclipse-workspace\SpringLibrary\web\src\main\java\academy\it\filters\SignUpFilter.java
 C:\Users\Yauhenii\eclipse-workspace\SpringLibrary\web\src\main\java\academy\it\command\AuthorController.java
+C:\Users\Yauhenii\eclipse-workspace\SpringLibrary\web\src\main\java\academy\it\command\BookRestController.java
 C:\Users\Yauhenii\eclipse-workspace\SpringLibrary\web\src\main\java\academy\it\command\AboutController.java
